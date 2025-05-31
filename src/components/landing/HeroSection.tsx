@@ -2,14 +2,7 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import {
-  ArrowRight,
-  Play,
-  Sparkles,
-  TrendingUp,
-  Users,
-  Zap,
-} from "lucide-react";
+import { ArrowRight, Play, Sparkles } from "lucide-react";
 
 const HeroSection: React.FC = () => {
   return (

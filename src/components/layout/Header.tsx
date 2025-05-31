@@ -1,5 +1,12 @@
 import React from "react";
-import SignInModal from "./SignInModal";
+import {
+  SignInButton,
+  UserButton,
+  SignOutButton,
+  SignedIn,
+  SignedOut,
+} from "@clerk/nextjs";
+import { Button } from "@/components/ui/button";
 
 const Header = () => {
   return (
@@ -8,7 +15,32 @@ const Header = () => {
         <div className="text-lg font-bold">InfluencerFlow</div>
         <div className="flex items-center gap-4">
           <div>Language Switcher Placeholder</div>
-          <SignInModal />
+
+          <SignedOut>
+            <SignInButton mode="modal">
+              <Button
+                variant="ghost"
+                className="hover:text-primary transition-colors"
+              >
+                Sign In
+              </Button>
+            </SignInButton>
+          </SignedOut>
+
+          <SignedIn>
+            <div className="flex items-center gap-4">
+              <a
+                href="/dashboard"
+                className="hover:text-primary transition-colors"
+              >
+                Dashboard
+              </a>
+              <UserButton afterSignOutUrl="/" />
+              <SignOutButton>
+                <Button variant="outline">Sign Out</Button>
+              </SignOutButton>
+            </div>
+          </SignedIn>
         </div>
       </div>
     </header>

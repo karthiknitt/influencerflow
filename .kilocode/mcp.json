@@ -1,0 +1,22 @@
+{
+  "mcpServers": {
+    "github.com/supabase-community/supabase-mcp": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@supabase/mcp-server-supabase@latest",
+        "--access-token",
+        "sbp_ecc00ebc3bfd8065c94a108a26434c8e8c1d76ec",
+        "--project-ref",
+        "uiumlhnqdkbejklspnvn"
+      ],
+      "alwaysAllow": [
+        "list_tables",
+        "apply_migration",
+        "generate_typescript_types"
+      ]
+    }
+  }
+}

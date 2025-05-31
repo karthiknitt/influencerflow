@@ -58,7 +58,7 @@ src/
 └── constants/
 ```
 
-- [ ] Create basic `.env.local` template:
+- [x] Create basic `.env.local` template:
 ```bash
 # Clerk
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
@@ -94,14 +94,14 @@ RAZORPAY_KEY_SECRET=
 ## 🔐 Clerk Authentication Setup (1.5 hours)
 
 ### Create Clerk Account & Application (20 minutes)
-- [ ] Go to clerk.com and create account
-- [ ] Create new application: "InfluencerFlow"
-- [ ] Configure sign-in options (Email, Google, GitHub)
-- [ ] Copy API keys to `.env.local`
+- [x] Go to clerk.com and create account
+- [x] Create new application: "InfluencerFlow"
+- [x] Configure sign-in options (Email, Google, GitHub)
+- [x] Copy API keys to `.env.local`
 - [ ] Set up redirect URLs for development
 
 ### Install Clerk in Next.js (25 minutes)
-- [ ] Create `src/middleware.ts`:
+- [x] Create `src/middleware.ts`:
 ```typescript
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
 

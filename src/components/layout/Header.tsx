@@ -35,7 +35,7 @@ const Header = () => {
               >
                 Dashboard
               </a>
-              <UserButton afterSignOutUrl="/" />
+              {typeof window !== 'undefined' && <UserButton afterSignOutUrl="/" />}
               <SignOutButton>
                 <Button variant="outline">Sign Out</Button>
               </SignOutButton>

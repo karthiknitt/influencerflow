@@ -32,6 +32,7 @@ export default function YouTubeSearchPage() {
   const [numberOfResults, setNumberOfResults] = useState("10");
   const [results, setResults] = useState<YouTubeCreator[]>([]);
   const [loading, setLoading] = useState(false);
+  const [selectedChannels, setSelectedChannels] = useState<Set<string>>(new Set());
 
   const handleSearch = async () => {
     if (!productService) {
@@ -170,10 +171,29 @@ export default function YouTubeSearchPage() {
                 {results.map((creator) => (
                   <li key={creator.id}>
                     <Card className="flex flex-col sm:flex-row items-center p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-xl">
-                      <Avatar className="w-24 h-24 sm:w-20 sm:h-20 rounded-full overflow-hidden shadow-md flex-shrink-0 mb-4 sm:mb-0 sm:mr-6">
-                        <AvatarImage src={creator.thumbnail} alt={creator.name} />
-                        <AvatarFallback>{creator.name.charAt(0)}</AvatarFallback>
-                      </Avatar>
+                      <div className="flex items-center sm:mr-6">
+                        <label className="flex items-center">
+                          <input
+                            type="checkbox"
+                            checked={selectedChannels.has(creator.id)}
+                            onChange={(e) => {
+                              const newSelectedChannels = new Set(selectedChannels);
+                              if (e.target.checked) {
+                                newSelectedChannels.add(creator.id);
+                              } else {
+                                newSelectedChannels.delete(creator.id);
+                              }
+                              setSelectedChannels(newSelectedChannels);
+                            }}
+                            className="mr-2"
+                          />
+                          <span className="text-sm">Select</span>
+                        </label>
+                        <Avatar className="w-24 h-24 sm:w-20 sm:h-20 rounded-full overflow-hidden shadow-md flex-shrink-0 mb-4 sm:mb-0">
+                          <AvatarImage src={creator.thumbnail} alt={creator.name} />
+                          <AvatarFallback>{creator.name.charAt(0)}</AvatarFallback>
+                        </Avatar>
+                      </div>
                       <div className="flex-grow text-center sm:text-left">
                         <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
                           {creator.name}
@@ -203,7 +223,16 @@ export default function YouTubeSearchPage() {
             </div>
           )}
         </CardContent>
-      </Card>
-    </div>
+        </Card>
+        <div className="mt-6 text-center">
+          <Button
+            onClick={() => alert(`Campaign started with ${selectedChannels.size} channels`)}
+            className="w-full py-3 text-lg font-semibold"
+            disabled={selectedChannels.size === 0}
+          >
+            {selectedChannels.size === 0 ? "Start Campaign" : `Campaign started with ${selectedChannels.size} channels`}
+          </Button>
+        </div>
+        </div>
   );
 }
